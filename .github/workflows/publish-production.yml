@@ -1,12 +1,12 @@
-name: publish-staging
+name: publish-production
 
 on:
   push:
     branches:
-      - develop
+      - main
 
 jobs:
-  publish-staging-image:
+  publish-production-image:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -19,7 +19,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push the staging Docker image
+      - name: Build and push the production Docker image
         run: |
-          docker build . --tag ghcr.io/nak0x/tp-lead-teach:staging
-          docker push ghcr.io/nak0x/tp-lead-teach:staging
+          docker build . --tag ghcr.io/nak0x/tp-lead-teach:production
+          docker push ghcr.io/nak0x/tp-lead-teach:production
