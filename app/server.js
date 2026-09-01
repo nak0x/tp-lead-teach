@@ -1,6 +1,20 @@
+// Load environment variables (GOOGLE_APPLICATION_CREDENTIALS, PUBSUB_INDEX, ...)
+// as early as possible so every module below sees them.
+require('dotenv').config();
+
 const express = require('express');
 const favicon = require('serve-favicon');
 const path = require('path');
+
+const config = require('./config');
+
+// The API and the queue worker share this single instance. The Google Cloud
+// Pub/Sub client can surface publish/subscribe failures (e.g. a transient auth
+// error) as unhandled rejections from its internal batch flush, which would
+// otherwise crash the whole process. Log and keep serving instead.
+process.on('unhandledRejection', reason => {
+  console.error('[server] unhandled rejection:', reason);
+});
 
 const app = express();
 
@@ -21,5 +35,12 @@ require('./route')(app);
 const port = process.env.PORT || 3000;
 app.server = app.listen(port);
 console.log(`listening on port ${port}`);
+
+// Part III - start listening for zip jobs on the queue. The worker consuming the
+// queue runs on the same instance as the API. It is required lazily so its
+// (ESM / Google Cloud) dependencies are only loaded when the worker is enabled.
+if (config.workerEnabled) {
+  require('./queue/consumer').startWorker();
+}
 
 module.exports = app;
