@@ -11,3 +11,6 @@ npm-debug.log*
 service-account*.json
 ecni2-*.json
 gcp-*.json
+
+# specify the account key file
+key.json
