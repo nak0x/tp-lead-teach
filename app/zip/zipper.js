@@ -1,10 +1,10 @@
 // Part IV - Zipping.
 // Builds an in-memory zip buffer from a list of { name, buffer } entries.
-const archiver = require('archiver');
+const { ZipArchive } = require('archiver');
 
 function zipImages(images) {
   return new Promise((resolve, reject) => {
-    const archive = archiver('zip', { zlib: { level: 9 } });
+    const archive = new ZipArchive({ zlib: { level: 9 } });
     const chunks = [];
 
     archive.on('data', chunk => chunks.push(chunk));
