@@ -7,7 +7,9 @@ const config = require('../config');
 const storage = new Storage({ projectId: config.projectId });
 
 // Part IV - Store the zip in GCS with the given object name.
-function uploadBuffer(objectName, buffer, contentType) {
+// The source is piped straight into the GCS write stream, so nothing is
+// buffered in memory on the way up.
+function uploadStream(objectName, source, contentType) {
   const file = storage.bucket(config.storageBucket).file(objectName);
 
   const stream = file.createWriteStream({
@@ -19,16 +21,21 @@ function uploadBuffer(objectName, buffer, contentType) {
   });
 
   return new Promise((resolve, reject) => {
-    stream.on('error', err => {
-      reject(err);
-    });
+    source.on('error', reject);
+    stream.on('error', reject);
+    stream.on('finish', () => resolve('Ok'));
 
-    stream.on('finish', () => {
-      resolve('Ok');
-    });
-
-    stream.end(buffer);
+    source.pipe(stream);
   });
+}
+
+// Part V - Open a read stream on the stored zip so the API can pipe it straight
+// to the client (streamed download) without buffering the whole file in memory.
+function createReadStream(objectName) {
+  return storage
+    .bucket(config.storageBucket)
+    .file(objectName)
+    .createReadStream();
 }
 
 // Part V - Generate a temporary (2 days) signed download URL for the zip.
@@ -47,6 +54,7 @@ async function getDownloadUrl(objectName) {
 }
 
 module.exports = {
-  uploadBuffer,
+  uploadStream,
+  createReadStream,
   getDownloadUrl
 };
