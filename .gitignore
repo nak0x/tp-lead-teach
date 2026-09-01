@@ -1,3 +1,13 @@
 node_modules
 npm-debug.log*
 .DS_Store
+
+# Environment variables (never commit real secrets)
+.env
+.env.local
+
+# Google service account key files (must stay out of the repository)
+*.json.key
+service-account*.json
+ecni2-*.json
+gcp-*.json

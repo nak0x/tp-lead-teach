@@ -3,3 +3,8 @@ npm-debug.log*
 .git
 .github
 .DS_Store
+.env
+.env.local
+service-account*.json
+ecni2-*.json
+gcp-*.json
