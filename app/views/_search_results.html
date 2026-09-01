@@ -8,6 +8,27 @@
 
     <% if (photos.length) { %>
 
+      <div class="zip-actions" style="margin-bottom: 15px;">
+        <!-- Part I - button calling the POST /zip endpoint with the "tags" query param -->
+        <form method="post"
+          action="/zip?tags=<%= encodeURIComponent(tagsParameter) %>&tagmode=<%= encodeURIComponent(tagmodeParameter) %>"
+          style="display: inline;">
+          <button type="submit" class="btn btn-success">Zip first 10 photos</button>
+        </form>
+
+        <!-- Part V - once the worker is done, a temporary download link is shown -->
+        <% if (zipDownloadUrl) { %>
+          <a href="<%= zipDownloadUrl %>" class="btn btn-primary" download>
+            Download zip
+          </a>
+        <% } else { %>
+          <span class="text-muted" style="margin-left: 10px;">
+            The zip is generated in the background &mdash; refresh this search in a moment to get the download link.
+          </span>
+        <% } %>
+      </div>
+
+
       <ul>
         <% photos.forEach(function (photo) { %>
           <li class="list-unstyled">
