@@ -8,24 +8,39 @@
 
     <% if (photos.length) { %>
 
-      <div class="zip-actions" style="margin-bottom: 15px;">
-        <!-- Part I - button calling the POST /zip endpoint with the "tags" query param -->
-        <form method="post"
-          action="/zip?tags=<%= encodeURIComponent(tagsParameter) %>&tagmode=<%= encodeURIComponent(tagmodeParameter) %>"
-          style="display: inline;">
-          <button type="submit" class="btn btn-success">Zip first 10 photos</button>
-        </form>
+      <!-- Part I / V - client-driven zip: queue the job over AJAX, poll the
+           status endpoint to drive the progress bar, then stream-download the
+           result. Data attributes feed the script in public/js/zip.js. -->
+      <div class="zip-actions" style="margin-bottom: 15px;"
+        data-zip
+        data-tags="<%= tagsParameter %>"
+        data-tagmode="<%= tagmodeParameter %>"
+        data-ready="<%= zipReady ? 'true' : 'false' %>">
 
-        <!-- Part V - once the worker is done, a temporary download link is shown -->
-        <% if (zipDownloadUrl) { %>
-          <a href="<%= zipDownloadUrl %>" class="btn btn-primary" download>
-            Download zip
-          </a>
-        <% } else { %>
-          <span class="text-muted" style="margin-left: 10px;">
-            The zip is generated in the background &mdash; refresh this search in a moment to get the download link.
-          </span>
-        <% } %>
+        <button type="button" class="btn btn-success" data-zip-start>
+          Zip first 10 photos
+        </button>
+
+        <a href="/zip/download?tags=<%= encodeURIComponent(tagsParameter) %>"
+          class="btn btn-primary" data-zip-download
+          style="<%= zipReady ? '' : 'display: none;' %>">
+          Download zip
+        </a>
+
+        <div class="zip-progress" data-zip-progress
+          style="margin-top: 12px; display: none;">
+          <div class="progress progress-striped active" data-zip-track
+            style="margin-bottom: 6px;">
+            <div class="progress-bar" role="progressbar" data-zip-bar
+              aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+              style="width: 0%; min-width: 2em;">0%</div>
+          </div>
+          <small class="text-muted" data-zip-status>Queued&hellip;</small>
+        </div>
+
+        <div class="alert alert-danger" data-zip-error
+          style="margin-top: 12px; display: none;"></div>
+
       </div>
 
 
@@ -47,3 +62,5 @@
   </div>
 
 </div>
+
+<script src="js/zip.js"></script>

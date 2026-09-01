@@ -24,21 +24,37 @@ function fetchImageBuffer(url) {
 }
 
 // Part IV - Process one job: flickr -> zip -> GCS -> job store.
+// Progress is reported into the shared job store as we go so the status endpoint
+// (and the progress bar on the page) can follow along:
+//   5% queued picked up, 10-70% fetching images, 75% zipping, 85-95% uploading,
+//   100% done.
 async function processJob({ tags, tagmode }) {
+  jobStore.setStatus(tags, 'processing', 5);
+
   const photos = await photoModel.getFlickrPhotos(tags, tagmode);
   const firstPhotos = photos.slice(0, MAX_PHOTOS);
+  jobStore.setProgress(tags, 10);
+
+  const total = firstPhotos.length || 1;
+  let fetched = 0;
 
   const images = await Promise.all(
     firstPhotos.map(async (photo, index) => {
       const buffer = await fetchImageBuffer(photo.media.b);
+      fetched += 1;
+      // Image fetching spans 10% -> 70% of the overall progress.
+      jobStore.setProgress(tags, 10 + (fetched / total) * 60);
       return { name: `photo_${index + 1}.jpg`, buffer };
     })
   );
 
+  jobStore.setProgress(tags, 75);
   const zipBuffer = await zipper.zipImages(images);
-  const objectName = `zips/${crypto.randomUUID()}.zip`;
+  jobStore.setProgress(tags, 85);
 
+  const objectName = `zips/${crypto.randomUUID()}.zip`;
   await storage.uploadBuffer(objectName, zipBuffer, 'application/zip');
+  jobStore.setProgress(tags, 95);
 
   // No DB in this experiment: keep the successful state in a global store.
   jobStore.markComplete(tags, objectName);
@@ -48,8 +64,9 @@ async function processJob({ tags, tagmode }) {
 
 // Pub/Sub message handler: process then ack (nack on failure so it is retried).
 async function handleMessage(message) {
+  let payload;
   try {
-    const payload = JSON.parse(message.data.toString());
+    payload = JSON.parse(message.data.toString());
     console.log(`[worker] received job for tags "${payload.tags}"`);
 
     const objectName = await processJob(payload);
@@ -58,6 +75,9 @@ async function handleMessage(message) {
     message.ack();
   } catch (error) {
     console.error('[worker] failed to process job', error);
+    if (payload && payload.tags) {
+      jobStore.markError(payload.tags, error && error.message);
+    }
     message.nack();
   }
 }

@@ -26,13 +26,20 @@ The app can zip the first 10 photos of a search result in the background using
 Google Cloud Pub/Sub (queue) + Cloud Storage. Flow:
 
 1. On a search result page, the **"Zip first 10 photos"** button calls
-   `POST /zip?tags=...&tagmode=...`.
-2. The endpoint (producer) publishes the tags onto the Pub/Sub topic.
+   `POST /zip?tags=...&tagmode=...` over AJAX (no page navigation) and reveals a
+   **live progress bar** instead of dumping the raw JSON response on screen.
+2. The endpoint (producer) publishes the tags onto the Pub/Sub topic and records
+   the job as `queued` in the in-memory job store.
 3. The worker (`app/queue/consumer.js`, started from `app/server.js`) consumes
    the message, fetches the Flickr photos, zips the first 10, uploads the zip to
    the bucket, records the finished job in memory, then acknowledges the message.
-4. Re-running the same search on `GET /` shows a **"Download zip"** button backed
-   by a temporary (2-day) signed URL.
+   As it works it updates the job's `progress` (0–100) in the job store.
+4. The page polls `GET /zip/status?tags=...` every ~1.2s to drive the progress
+   bar. When the job is `done`, it **streams the file down automatically** from
+   `GET /zip/download?tags=...` (which pipes the object straight from Cloud
+   Storage with `Content-Disposition: attachment`).
+5. Re-running the same search on `GET /` shows the **"Download zip"** button
+   immediately if a zip for those tags is already available.
 
 ### Setup
 
