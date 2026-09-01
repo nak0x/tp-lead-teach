@@ -31,6 +31,15 @@ function uploadBuffer(objectName, buffer, contentType) {
   });
 }
 
+// Part V - Open a read stream on the stored zip so the API can pipe it straight
+// to the client (streamed download) without buffering the whole file in memory.
+function createReadStream(objectName) {
+  return storage
+    .bucket(config.storageBucket)
+    .file(objectName)
+    .createReadStream();
+}
+
 // Part V - Generate a temporary (2 days) signed download URL for the zip.
 async function getDownloadUrl(objectName) {
   const options = {
@@ -48,5 +57,6 @@ async function getDownloadUrl(objectName) {
 
 module.exports = {
   uploadBuffer,
+  createReadStream,
   getDownloadUrl
 };
