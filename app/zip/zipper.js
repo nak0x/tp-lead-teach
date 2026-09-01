@@ -1,29 +1,33 @@
 // Part IV - Zipping.
-// Builds an in-memory zip buffer from a list of { name, buffer } entries.
+// Streams a list of { name, stream } entries into a zip archive. The archive is
+// itself a Readable stream, so the caller can pipe it straight to storage
+// without ever buffering the whole zip (or the source images) in memory.
 const { ZipArchive } = require('archiver');
 
-function zipImages(images) {
-  return new Promise((resolve, reject) => {
-    const archive = new ZipArchive({ zlib: { level: 9 } });
-    const chunks = [];
+// `onEntry` (optional) is invoked each time an image has been streamed into the
+// archive, which lets the caller report progress.
+function createZipStream(images, { onEntry } = {}) {
+  const archive = new ZipArchive({ zlib: { level: 9 } });
 
-    archive.on('data', chunk => chunks.push(chunk));
-    archive.on('warning', err => {
-      if (err.code !== 'ENOENT') {
-        reject(err);
-      }
-    });
-    archive.on('error', reject);
-    archive.on('end', () => resolve(Buffer.concat(chunks)));
-
-    images.forEach(image => {
-      archive.append(image.buffer, { name: image.name });
-    });
-
-    archive.finalize();
+  archive.on('warning', err => {
+    if (err.code !== 'ENOENT') {
+      archive.emit('error', err);
+    }
   });
+
+  if (typeof onEntry === 'function') {
+    archive.on('entry', onEntry);
+  }
+
+  images.forEach(image => {
+    archive.append(image.stream, { name: image.name });
+  });
+
+  archive.finalize();
+
+  return archive;
 }
 
 module.exports = {
-  zipImages
+  createZipStream
 };

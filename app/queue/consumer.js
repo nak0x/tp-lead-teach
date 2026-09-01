@@ -16,17 +16,20 @@ const pubsub = new PubSub({ projectId: config.projectId });
 
 const MAX_PHOTOS = 10;
 
-// Download a single remote image into a Buffer.
+// Open a read stream on a remote image so it can be piped straight into the zip
+// without ever holding the whole image in a Buffer.
 // got is ESM-only, so it is required lazily (keeps CommonJS test runners happy).
-function fetchImageBuffer(url) {
+function fetchImageStream(url) {
   const got = require('got');
-  return got.default.get(url, { responseType: 'buffer' }).then(response => response.body);
+  return got.default.stream(url);
 }
 
 // Part IV - Process one job: flickr -> zip -> GCS -> job store.
-// Progress is reported into the shared job store as we go so the status endpoint
-// (and the progress bar on the page) can follow along:
-//   5% queued picked up, 10-70% fetching images, 75% zipping, 85-95% uploading,
+// Images are streamed straight into the zip and the zip is streamed straight to
+// GCS, so fetching, zipping and uploading all happen at once. Progress is
+// reported into the shared job store as we go so the status endpoint (and the
+// progress bar on the page) can follow along:
+//   5% queued picked up, 10% photos listed, 10-70% images zipped, 95% uploaded,
 //   100% done.
 async function processJob({ tags, tagmode }) {
   jobStore.setStatus(tags, 'processing', 5);
@@ -36,24 +39,27 @@ async function processJob({ tags, tagmode }) {
   jobStore.setProgress(tags, 10);
 
   const total = firstPhotos.length || 1;
-  let fetched = 0;
+  let zipped = 0;
 
-  const images = await Promise.all(
-    firstPhotos.map(async (photo, index) => {
-      const buffer = await fetchImageBuffer(photo.media.b);
-      fetched += 1;
-      // Image fetching spans 10% -> 70% of the overall progress.
-      jobStore.setProgress(tags, 10 + (fetched / total) * 60);
-      return { name: `photo_${index + 1}.jpg`, buffer };
-    })
-  );
+  // Each image is a live read stream fed straight into the archive.
+  const images = firstPhotos.map((photo, index) => ({
+    name: `photo_${index + 1}.jpg`,
+    stream: fetchImageStream(photo.media.b)
+  }));
 
-  jobStore.setProgress(tags, 75);
-  const zipBuffer = await zipper.zipImages(images);
-  jobStore.setProgress(tags, 85);
+  const zipStream = zipper.createZipStream(images, {
+    // 'entry' fires once an image has been streamed into the archive, which
+    // happens as the zip is piped to storage: spread that across 10% -> 70%.
+    onEntry: () => {
+      zipped += 1;
+      jobStore.setProgress(tags, 10 + (zipped / total) * 60);
+    }
+  });
 
+  // Pipe the archive straight to GCS - the images, the zip and the upload all
+  // flow through as streams, so nothing is buffered end to end.
   const objectName = `zips/${crypto.randomUUID()}.zip`;
-  await storage.uploadBuffer(objectName, zipBuffer, 'application/zip');
+  await storage.uploadStream(objectName, zipStream, 'application/zip');
   jobStore.setProgress(tags, 95);
 
   // No DB in this experiment: keep the successful state in a global store.

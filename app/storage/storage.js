@@ -7,7 +7,9 @@ const config = require('../config');
 const storage = new Storage({ projectId: config.projectId });
 
 // Part IV - Store the zip in GCS with the given object name.
-function uploadBuffer(objectName, buffer, contentType) {
+// The source is piped straight into the GCS write stream, so nothing is
+// buffered in memory on the way up.
+function uploadStream(objectName, source, contentType) {
   const file = storage.bucket(config.storageBucket).file(objectName);
 
   const stream = file.createWriteStream({
@@ -19,15 +21,11 @@ function uploadBuffer(objectName, buffer, contentType) {
   });
 
   return new Promise((resolve, reject) => {
-    stream.on('error', err => {
-      reject(err);
-    });
+    source.on('error', reject);
+    stream.on('error', reject);
+    stream.on('finish', () => resolve('Ok'));
 
-    stream.on('finish', () => {
-      resolve('Ok');
-    });
-
-    stream.end(buffer);
+    source.pipe(stream);
   });
 }
 
@@ -56,7 +54,7 @@ async function getDownloadUrl(objectName) {
 }
 
 module.exports = {
-  uploadBuffer,
+  uploadStream,
   createReadStream,
   getDownloadUrl
 };
