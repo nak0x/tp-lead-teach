@@ -3,6 +3,25 @@ const photoModel = require('./photo_model');
 const producer = require('./queue/producer');
 const jobStore = require('./queue/job_store');
 const storage = require('./storage/storage');
+const zipRepository = require('./firebase/zip_repository');
+const { requireAuth } = require('./firebase/auth');
+
+// Resolve the GCS object name for a set of tags. Prefer the fast in-memory job
+// store (current session), then fall back to Firebase so downloads still work
+// after a restart. Never throws: a database error just means "not found".
+async function resolveObjectName(tags) {
+  const local = jobStore.getObjectName(tags);
+  if (local) {
+    return local;
+  }
+  try {
+    const record = await zipRepository.findLatestByTags(tags);
+    return record ? record.path : undefined;
+  } catch (error) {
+    console.error('failed to look up stored zip', error);
+    return undefined;
+  }
+}
 
 function route(app) {
   app.get('/', async (req, res) => {
@@ -31,9 +50,9 @@ function route(app) {
       return res.render('index', ejsLocalVariables);
     }
 
-    // Part V - if the zip for these tags is already available, let the view show
-    // the (streamed) download button right away.
-    ejsLocalVariables.zipReady = Boolean(jobStore.getObjectName(tags));
+    // Part V - if the zip for these tags is already available (in memory or
+    // persisted in Firebase), let the view show the download button right away.
+    ejsLocalVariables.zipReady = Boolean(await resolveObjectName(tags));
 
     // get photos from flickr public feed api
     return photoModel
@@ -52,7 +71,8 @@ function route(app) {
   // Part I & II - endpoint producer: queue a "zip these tags" job.
   // Called over AJAX from the search results page; returns JSON so the page can
   // start polling /zip/status instead of navigating away to the raw response.
-  app.post('/zip', async (req, res) => {
+  // Part III - protected: requires a valid Firebase ID token (Google Sign-In).
+  app.post('/zip', requireAuth, async (req, res) => {
     const tags = req.query.tags;
     const tagmode = req.query.tagmode || 'all';
 
@@ -92,16 +112,29 @@ function route(app) {
     });
   });
 
+  // Part II - list every zip already generated, read straight from Firebase.
+  // The client fetches this to show the "previously generated zips" section.
+  app.get('/zips', async (req, res) => {
+    try {
+      const zips = await zipRepository.listZips();
+      return res.status(200).send({ zips });
+    } catch (error) {
+      console.error('failed to list zips', error);
+      return res.status(500).send({ error: 'Failed to list zips' });
+    }
+  });
+
   // Part V - stream the finished zip straight from Google Cloud Storage to the
   // client (Content-Disposition: attachment triggers the browser download).
-  app.get('/zip/download', (req, res) => {
+  app.get('/zip/download', async (req, res) => {
     const tags = req.query.tags;
 
     if (!tags) {
       return res.status(400).send({ error: 'Missing "tags" query parameter' });
     }
 
-    const objectName = jobStore.getObjectName(tags);
+    // Resolve from memory first, then Firebase (so downloads survive a restart).
+    const objectName = await resolveObjectName(tags);
     if (!objectName) {
       return res.status(404).send({ error: 'No zip available for these tags yet' });
     }

@@ -13,6 +13,16 @@ require('dotenv').config();
 const pubsubIndex = process.env.PUBSUB_INDEX || '';
 const resourceName = `ecni2-${pubsubIndex}`;
 
+const isTest = process.env.NODE_ENV === 'test';
+
+// Firebase Realtime Database is used to persist the completed zips so they
+// survive a restart of the instance. The Admin SDK authenticates with the exact
+// same service account key as Pub/Sub / Storage (GOOGLE_APPLICATION_CREDENTIALS),
+// so no extra credentials are needed.
+const firebaseDatabaseUrl =
+  process.env.FIREBASE_DATABASE_URL ||
+  'https://ecni2-2026-default-rtdb.firebaseio.com';
+
 module.exports = {
   // Google Cloud project that hosts the Pub/Sub topic and the bucket.
   projectId: process.env.GOOGLE_CLOUD_PROJECT || 'ecni2-2026',
@@ -28,7 +38,30 @@ module.exports = {
   // WORKER_ENABLED; otherwise on everywhere except the test environment.
   workerEnabled: process.env.WORKER_ENABLED
     ? process.env.WORKER_ENABLED !== 'false'
-    : process.env.NODE_ENV !== 'test',
+    : !isTest,
 
-  pubsubIndex
+  pubsubIndex,
+
+  // --- Firebase (Realtime Database + Auth) ---------------------------------
+
+  // Realtime Database URL (Part I & II). From the TP guide.
+  firebaseDatabaseUrl,
+
+  // Root path segment ("votreprenom") under which completed zips are stored:
+  //   /<firebaseDbRoot>/<heureduzippage>/<filename>
+  firebaseDbRoot: process.env.FIREBASE_DB_ROOT || 'theo',
+
+  // Turn the whole Firebase integration on/off. Off in the test environment so
+  // the suite never needs a live database; otherwise on. Can be forced with
+  // FIREBASE_ENABLED=true/false.
+  firebaseEnabled: process.env.FIREBASE_ENABLED
+    ? process.env.FIREBASE_ENABLED !== 'false'
+    : !isTest,
+
+  // Require a verified Firebase ID token on the mutating zip endpoints (Part
+  // III). Defaults to on wherever Firebase is enabled; force with
+  // AUTH_REQUIRED=true/false.
+  authRequired: process.env.AUTH_REQUIRED
+    ? process.env.AUTH_REQUIRED !== 'false'
+    : !isTest
 };
