@@ -11,6 +11,7 @@ const photoModel = require('../photo_model');
 const zipper = require('../zip/zipper');
 const storage = require('../storage/storage');
 const jobStore = require('./job_store');
+const zipRepository = require('../firebase/zip_repository');
 
 const pubsub = new PubSub({ projectId: config.projectId });
 
@@ -62,7 +63,13 @@ async function processJob({ tags, tagmode }) {
   await storage.uploadStream(objectName, zipStream, 'application/zip');
   jobStore.setProgress(tags, 95);
 
-  // No DB in this experiment: keep the successful state in a global store.
+  // Part I - persist the finished zip in Firebase so it survives a restart of
+  // the instance (stores the GCS object path + download link). Best-effort:
+  // never fail an otherwise successful job on a database hiccup.
+  await zipRepository.saveCompletedZip({ tags, tagmode, objectName });
+
+  // Keep the live in-memory status too, so the polling status endpoint reports
+  // "done" instantly without a database round-trip.
   jobStore.markComplete(tags, objectName);
 
   return objectName;

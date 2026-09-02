@@ -60,6 +60,33 @@ same environment variables directly in the UI.
 Set `WORKER_ENABLED=false` to run the API without the background worker.
 
 
+## Firebase (NoSQL persistence + authentication)
+
+The completed zips are persisted in **Firebase Realtime Database** so they
+survive a restart of the instance (previously the job state lived only in an
+in-memory map in `app/queue/job_store.js`, which is now used solely for live
+progress polling).
+
+* **Part I — persist zips.** After a successful zip + upload, the worker writes a
+  record to `/<FIREBASE_DB_ROOT>/<heureduzippage>/<filename>` holding the Cloud
+  Storage path and the download link (`app/firebase/zip_repository.js`). The
+  Admin SDK authenticates with the **same service account** as Pub/Sub / Storage
+  (`GOOGLE_APPLICATION_CREDENTIALS`) — no extra credentials.
+* **Part II — read zips.** `GET /zips` reads the database and returns every zip
+  already generated; the home page renders them in a "Previously generated zips"
+  list (`app/public/js/zips.js`). Downloads and the "zip ready" badge also fall
+  back to Firebase, so they keep working after a restart.
+* **Part III — web auth.** The page adds **Google Sign-In** via the Firebase Web
+  SDK (`app/public/js/firebase-auth.js`). The zip button is disabled until you
+  sign in, and `POST /zip` is protected server-side: the client sends the Firebase
+  ID token as `Authorization: Bearer <token>` and the server verifies it with the
+  Admin SDK (`app/firebase/auth.js`).
+
+Relevant env vars (see `.env.example`): `FIREBASE_DATABASE_URL`,
+`FIREBASE_DB_ROOT`, `FIREBASE_ENABLED`, `AUTH_REQUIRED`. Firebase and auth are
+disabled automatically under `NODE_ENV=test` so the suite needs no live database.
+
+
 ## Running Tests
 
 * Run unit and integration tests: `npm test`

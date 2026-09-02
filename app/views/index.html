@@ -17,6 +17,17 @@
     <%- include("_search_results.html") -%>
   <% } %>
 
+  <!-- Part II - zips already generated, read straight from Firebase via GET /zips. -->
+  <div class="panel panel-default" style="margin-top: 24px;">
+    <div class="panel-heading">
+      <h3 class="panel-title">Previously generated zips</h3>
+    </div>
+    <ul class="list-group" data-zips-list>
+      <li class="list-group-item text-muted">Loading&hellip;</li>
+    </ul>
+  </div>
+  <script src="js/zips.js"></script>
+
 </div>
 
 
