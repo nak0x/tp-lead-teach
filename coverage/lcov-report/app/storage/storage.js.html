@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.25% </span>
+                <span class="strong">29.41% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/16</span>
+                <span class='fraction'>5/17</span>
             </div>
         
             
@@ -115,7 +115,15 @@
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
 <a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -125,6 +133,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -134,17 +157,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,6 +179,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -176,7 +192,9 @@ const config = require('../config');
 const storage = new Storage({ projectId: config.projectId });
 &nbsp;
 // Part IV - Store the zip in GCS with the given object name.
-function <span class="fstat-no" title="function not covered" >uploadBuffer(</span>objectName, buffer, contentType) {
+// The source is piped straight into the GCS write stream, so nothing is
+// buffered in memory on the way up.
+function <span class="fstat-no" title="function not covered" >uploadStream(</span>objectName, source, contentType) {
   const file = <span class="cstat-no" title="statement not covered" >storage.bucket(config.storageBucket).file(objectName);</span>
 &nbsp;
   const stream = <span class="cstat-no" title="statement not covered" >file.createWriteStream({</span>
@@ -188,16 +206,21 @@ function <span class="fstat-no" title="function not covered" >uploadBuffer(</spa
   });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return new Promise(<span class="fstat-no" title="function not covered" >(r</span>esolve, reject) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    stream.on('error', <span class="fstat-no" title="function not covered" >er</span>r =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      reject(err);</span>
-    });
+<span class="cstat-no" title="statement not covered" >    source.on('error', reject);</span>
+<span class="cstat-no" title="statement not covered" >    stream.on('error', reject);</span>
+<span class="cstat-no" title="statement not covered" >    stream.on('finish', <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >resolve('Ok'))</span>;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    stream.on('finish', <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      resolve('Ok');</span>
-    });
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    stream.end(buffer);</span>
+<span class="cstat-no" title="statement not covered" >    source.pipe(stream);</span>
   });
+}
+&nbsp;
+// Part V - Open a read stream on the stored zip so the API can pipe it straight
+// to the client (streamed download) without buffering the whole file in memory.
+function <span class="fstat-no" title="function not covered" >createReadStream(</span>objectName) {
+<span class="cstat-no" title="statement not covered" >  return storage</span>
+    .bucket(config.storageBucket)
+    .file(objectName)
+    .createReadStream();
 }
 &nbsp;
 // Part V - Generate a temporary (2 days) signed download URL for the zip.
@@ -216,7 +239,8 @@ async function <span class="fstat-no" title="function not covered" >getDownloadU
 }
 &nbsp;
 module.exports = {
-  uploadBuffer,
+  uploadStream,
+  createReadStream,
   getDownloadUrl
 };
 &nbsp;</pre></td></tr></table></pre>
@@ -226,7 +250,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-08-31T13:52:32.722Z
+                at 2026-09-02T07:31:40.785Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
