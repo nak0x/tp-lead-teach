@@ -52,7 +52,7 @@ module.exports = {
 
   pubsubIndex,
 
-  // --- Firebase (Realtime Database + Auth) ---------------------------------
+  // --- Firebase (Realtime Database) ----------------------------------------
 
   // Realtime Database URL (Part I & II). From the TP guide.
   firebaseDatabaseUrl,
@@ -66,13 +66,6 @@ module.exports = {
   // FIREBASE_ENABLED=true/false.
   firebaseEnabled: process.env.FIREBASE_ENABLED
     ? process.env.FIREBASE_ENABLED !== 'false'
-    : !isTest,
-
-  // Require a verified Firebase ID token on the mutating zip endpoints (Part
-  // III). Defaults to on wherever Firebase is enabled; force with
-  // AUTH_REQUIRED=true/false.
-  authRequired: process.env.AUTH_REQUIRED
-    ? process.env.AUTH_REQUIRED !== 'false'
     : !isTest,
 
   // --- Rate limiting (token bucket algorithm) ------------------------------

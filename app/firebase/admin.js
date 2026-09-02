@@ -55,19 +55,8 @@ function getDb() {
   return getDatabase(current);
 }
 
-// Auth handle (used to verify web ID tokens), or null when unavailable.
-function getAuth() {
-  const current = getApp();
-  if (!current) {
-    return null;
-  }
-  const { getAuth: getAdminAuth } = require('firebase-admin/auth');
-  return getAdminAuth(current);
-}
-
 module.exports = {
   getApp,
   getDb,
-  getAuth,
   enabled: () => config.firebaseEnabled
 };

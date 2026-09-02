@@ -4,7 +4,6 @@ const producer = require('./queue/producer');
 const jobStore = require('./queue/job_store');
 const storage = require('./storage/storage');
 const zipRepository = require('./firebase/zip_repository');
-const { requireAuth } = require('./firebase/auth');
 const { rateLimit } = require('./rate_limit/middleware');
 
 // Resolve the GCS object name for a set of tags. Prefer the fast in-memory job
@@ -72,12 +71,11 @@ function route(app) {
   // Part I & II - endpoint producer: queue a "zip these tags" job.
   // Called over AJAX from the search results page; returns JSON so the page can
   // start polling /zip/status instead of navigating away to the raw response.
-  // Protected by two layers, applied before any work is done:
-  //   - rateLimit: token-bucket throttling per client IP (Memory Store TP) so a
-  //     malicious actor can't spam the zip-generation button. Runs first so it
-  //     shields even the (relatively costly) auth verification from abuse.
-  //   - requireAuth: a valid Firebase ID token (Google Sign-In).
-  app.post('/zip', rateLimit, requireAuth, async (req, res) => {
+  // Throttled per client IP by rateLimit (Memory Store TP) so a malicious actor
+  // can't spam the zip-generation button. No personal sign-in is required: the
+  // zip is created, uploaded to GCS and recorded in Firebase entirely with the
+  // app's own service account credentials (GOOGLE_APPLICATION_CREDENTIALS).
+  app.post('/zip', rateLimit, async (req, res) => {
     const tags = req.query.tags;
     const tagmode = req.query.tagmode || 'all';
 

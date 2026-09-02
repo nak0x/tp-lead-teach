@@ -17,14 +17,9 @@
         data-tagmode="<%= tagmodeParameter %>"
         data-ready="<%= zipReady ? 'true' : 'false' %>">
 
-        <button type="button" class="btn btn-success" data-zip-start disabled>
+        <button type="button" class="btn btn-success" data-zip-start>
           Zip first 10 photos
         </button>
-
-        <!-- Part III - shown until the user signs in with Google. -->
-        <small class="text-muted" data-zip-auth-hint style="margin-left: 8px;">
-          Sign in with Google to generate a zip.
-        </small>
 
         <a href="/zip/download?tags=<%= encodeURIComponent(tagsParameter) %>"
           class="btn btn-primary" data-zip-download

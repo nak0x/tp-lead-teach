@@ -25,30 +25,9 @@
   var progressBar = container.querySelector('[data-zip-bar]');
   var statusText = container.querySelector('[data-zip-status]');
   var errorBox = container.querySelector('[data-zip-error]');
-  var authHint = container.querySelector('[data-zip-auth-hint]');
 
   var polling = false;
   var downloaded = false;
-  // Part III - the zip button is only usable once the user has signed in.
-  var signedIn = false;
-
-  function isSignedIn() {
-    return Boolean(window.zipAuth && window.zipAuth.isSignedIn());
-  }
-
-  // Reflect the current auth state on the start button + hint.
-  function updateAuthState() {
-    signedIn = isSignedIn();
-    startBtn.disabled = !signedIn || polling;
-    if (authHint) {
-      authHint.style.display = signedIn ? 'none' : '';
-    }
-  }
-
-  // firebase-auth.js announces sign-in / sign-out through this event.
-  document.addEventListener('zip-auth-changed', updateAuthState);
-  // Handle the case where auth resolved before this script attached its listener.
-  updateAuthState();
 
   function setProgress(percent) {
     var value = Math.max(0, Math.min(100, Math.round(percent || 0)));
@@ -76,8 +55,8 @@
       errorBox.textContent = message || 'Something went wrong while zipping.';
       errorBox.style.display = 'block';
     }
-    // Let the user try again (still respecting the auth gate).
-    updateAuthState();
+    // Let the user try again.
+    startBtn.disabled = false;
     stopAnimation();
     progressBar.className = 'progress-bar progress-bar-danger';
   }
@@ -155,13 +134,6 @@
       return;
     }
 
-    // Part III - refuse to queue a job unless the user is signed in. The server
-    // enforces this too (verified Firebase ID token), this is just nicer UX.
-    if (!isSignedIn()) {
-      showError('Please sign in with Google before generating a zip.');
-      return;
-    }
-
     startBtn.disabled = true;
     downloaded = false;
     if (errorBox) {
@@ -184,16 +156,7 @@
       '&tagmode=' +
       encodeURIComponent(tagmode);
 
-    // Attach the Firebase ID token so the server can verify the request.
-    window.zipAuth
-      .getIdToken()
-      .then(function (token) {
-        var headers = { Accept: 'application/json' };
-        if (token) {
-          headers.Authorization = 'Bearer ' + token;
-        }
-        return fetch(url, { method: 'POST', headers: headers });
-      })
+    fetch(url, { method: 'POST', headers: { Accept: 'application/json' } })
       .then(function (res) {
         // Rate limited by the token bucket: surface the server's friendly
         // message (and how long to wait) instead of a generic HTTP error.
