@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for app/config.js</title>
+    <title>Code coverage report for app/rate_limit/rate_limiter.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">app</a> config.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">app/rate_limit</a> rate_limiter.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">65.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>23/35</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">72.72% </span>
+                <span class="strong">46.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>32/44</span>
+                <span class='fraction'>7/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">65.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>23/35</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -168,14 +168,13 @@
 <a name='L103'></a><a href='#L103'>103</a>
 <a name='L104'></a><a href='#L104'>104</a>
 <a name='L105'></a><a href='#L105'>105</a>
-<a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a>
-<a name='L112'></a><a href='#L112'>112</a>
-<a name='L113'></a><a href='#L113'>113</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L106'></a><a href='#L106'>106</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -184,18 +183,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -205,199 +192,191 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Centralized configuration for the queuing / storage feature.
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Part II &amp; III - Token bucket rate limiter.
 //
-// Authentication to Google Cloud (Pub/Sub + Storage) is handled automatically
-// by the client libraries through the GOOGLE_APPLICATION_CREDENTIALS
-// environment variable, which must point to the absolute path of a service
-// account JSON key file. That key file must NEVER be committed to the repo.
+// Uses the `tokenbucket` library to implement the algorithm described in the
+// TP. Each client (identified by IP) gets its own bucket:
+//   - size (b)                  = config.rateLimitBucketSize        (15)
+//   - tokensToAddPerInterval(r) = config.rateLimitRefillPerSecond   (1 / second)
+//   - a request costs (cost)    = config.rateLimitRequestCost       (3)
 //
-// See .env.example for the full list of variables.
-require('dotenv').config();
+// Two storage backends, chosen automatically:
+//   * Redis (Part III) - the bucket state lives in Redis so every instance of
+//     the API shares one limit per IP. We load the saved state, try to spend
+//     the tokens, and save the new state back.
+//   * In-memory map (Part II) - a per-process Map keyed by IP, used when Redis
+//     is disabled or unreachable. State is kept in the bucket instances.
+const TokenBucket = require('tokenbucket');
+const config = require('../config');
+const redisStore = require('./redis');
 &nbsp;
-// The number "i" attributed to you. The Pub/Sub topic and subscription are
-// both named "ecni2-&lt;i&gt;". Set PUBSUB_INDEX in your .env file.
-const pubsubIndex = process.env.PUBSUB_INDEX || <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
-const resourceName = `ecni2-${pubsubIndex}`;
+// Part II fallback: one long-lived bucket per IP, keyed by IP.
+const localBuckets = new Map();
 &nbsp;
-const isTest = process.env.NODE_ENV === 'test';
+// Shared bucket options for a given IP. When `redisAdapter` is provided the
+// bucket persists to Redis under a per-IP key.
+function bucketOptions(ip, redisAdapter) {
+  const options = {
+    size: config.rateLimitBucketSize, // b
+    tokensToAddPerInterval: config.rateLimitRefillPerSecond, // r
+    interval: 'second'
+  };
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (redisAdapter) {
+<span class="cstat-no" title="statement not covered" >    options.redis = {</span>
+      bucketName: `ratelimit:${ip}`,
+      redisClient: redisAdapter
+    };
+  }
+  return options;
+}
 &nbsp;
-// --- Rate limiting (token bucket) -----------------------------------------
-// Redis connection used to share the rate-limiter state across horizontally
-// scaled instances (Part III of the TP). The password MUST come from an
-// environment variable and never be committed (see .env / .env.example).
-const redisUrl = process.env.REDIS_URL || '';
-const redisHost = process.env.REDIS_HOST || <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
-// Only turn the Redis-backed limiter on when we actually have connection
-// details; otherwise the limiter degrades to a per-process in-memory map.
-const redisConfigured = Boolean(redisUrl || redisHost);
+// Shape the outcome of a consume() call into something the middleware can turn
+// into headers / a 429 response.
+function toResult(allowed, bucket, cost) {
+  const remaining = Math.max(0, Math.floor(bucket.tokensLeft));
+  let retryAfter = 0;
+  if (!allowed) {
+    // Seconds until the bucket refills enough tokens for one more request.
+    const missing = cost - bucket.tokensLeft;
+    retryAfter = Math.max(1, Math.ceil(missing / config.rateLimitRefillPerSecond));
+  }
+  return { allowed, remaining, retryAfter, limit: config.rateLimitBucketSize };
+}
 &nbsp;
-// Firebase Realtime Database is used to persist the completed zips so they
-// survive a restart of the instance. The Admin SDK authenticates with the exact
-// same service account key as Pub/Sub / Storage (GOOGLE_APPLICATION_CREDENTIALS),
-// so no extra credentials are needed.
-const firebaseDatabaseUrl =
-  process.env.FIREBASE_DATABASE_URL ||
-  'https://ecni2-2026-default-rtdb.firebaseio.com';
+// Part III path: spend `cost` tokens on the Redis-backed bucket for this IP.
+// A fresh bucket per request; its state is loaded from / saved to Redis so it is
+// shared across instances. Load -&gt; try to spend -&gt; save on success only (a
+// dropped request must not consume tokens, matching the TP).
+async function <span class="fstat-no" title="function not covered" >consumeWithRedis(</span>adapter, ip, cost) {
+  const bucket = <span class="cstat-no" title="statement not covered" >new TokenBucket(bucketOptions(ip, adapter));</span>
+<span class="cstat-no" title="statement not covered" >  await bucket.loadSaved();</span>
+  const allowed = <span class="cstat-no" title="statement not covered" >bucket.removeTokensSync(cost);</span>
+<span class="cstat-no" title="statement not covered" >  if (allowed) {</span>
+<span class="cstat-no" title="statement not covered" >    await bucket.save();</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return toResult(allowed, bucket, cost);</span>
+}
+&nbsp;
+// Part II path: spend `cost` tokens on the in-memory bucket for this IP.
+function consumeInMemory(ip, cost) {
+  let bucket = localBuckets.get(ip);
+  if (!bucket) {
+    bucket = new TokenBucket(bucketOptions(ip, null));
+    localBuckets.set(ip, bucket);
+  }
+  const allowed = bucket.removeTokensSync(cost);
+  return toResult(allowed, bucket, cost);
+}
+&nbsp;
+// Try to consume `cost` tokens for `ip`. Prefers the shared Redis bucket (when
+// the connection is ready) and transparently falls back to the in-memory bucket
+// when Redis is off, still connecting, or errors on a command.
+async function consume(ip, cost = config.rateLimitRequestCost) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (redisStore.isEnabled()) {
+    const adapter = <span class="cstat-no" title="statement not covered" >redisStore.getAdapter();</span>
+<span class="cstat-no" title="statement not covered" >    if (adapter) {</span>
+<span class="cstat-no" title="statement not covered" >      try {</span>
+<span class="cstat-no" title="statement not covered" >        return await consumeWithRedis(adapter, ip, cost);</span>
+      } catch (err) {
+<span class="cstat-no" title="statement not covered" >        console.error(</span>
+          '[ratelimit] Redis bucket failed, using in-memory fallback:',
+          err &amp;&amp; err.message
+        );
+      }
+    }
+  }
+  return consumeInMemory(ip, cost);
+}
+&nbsp;
+// Exposed for tests: wipe the in-memory buckets between cases.
+function _resetInMemory() {
+  localBuckets.clear();
+}
 &nbsp;
 module.exports = {
-  // Google Cloud project that hosts the Pub/Sub topic and the bucket.
-  projectId: process.env.GOOGLE_CLOUD_PROJECT || <span class="branch-1 cbranch-no" title="branch not covered" >'ecni2-2026',</span>
-&nbsp;
-  // Topic and subscription share the same "ecni2-&lt;i&gt;" name.
-  topicName: process.env.PUBSUB_TOPIC || resourceName,
-  subscriptionName: process.env.PUBSUB_SUBSCRIPTION || resourceName,
-&nbsp;
-  // Google Cloud Storage bucket where the generated zips are stored.
-  storageBucket: process.env.STORAGE_BUCKET || <span class="branch-1 cbranch-no" title="branch not covered" >'ecni22026bucket',</span>
-&nbsp;
-  // Whether to start the background worker on boot. Explicitly controllable via
-  // WORKER_ENABLED; otherwise on everywhere except the test environment.
-  workerEnabled: process.env.WORKER_ENABLED
-    ? <span class="branch-0 cbranch-no" title="branch not covered" >process.env.WORKER_ENABLED !== 'false'</span>
-    : !isTest,
-&nbsp;
-  pubsubIndex,
-&nbsp;
-  // --- Firebase (Realtime Database + Auth) ---------------------------------
-&nbsp;
-  // Realtime Database URL (Part I &amp; II). From the TP guide.
-  firebaseDatabaseUrl,
-&nbsp;
-  // Root path segment ("votreprenom") under which completed zips are stored:
-  //   /&lt;firebaseDbRoot&gt;/&lt;heureduzippage&gt;/&lt;filename&gt;
-  firebaseDbRoot: process.env.FIREBASE_DB_ROOT || 'theo',
-&nbsp;
-  // Turn the whole Firebase integration on/off. Off in the test environment so
-  // the suite never needs a live database; otherwise on. Can be forced with
-  // FIREBASE_ENABLED=true/false.
-  firebaseEnabled: process.env.FIREBASE_ENABLED
-    ? <span class="branch-0 cbranch-no" title="branch not covered" >process.env.FIREBASE_ENABLED !== 'false'</span>
-    : !isTest,
-&nbsp;
-  // Require a verified Firebase ID token on the mutating zip endpoints (Part
-  // III). Defaults to on wherever Firebase is enabled; force with
-  // AUTH_REQUIRED=true/false.
-  authRequired: process.env.AUTH_REQUIRED
-    ? <span class="branch-0 cbranch-no" title="branch not covered" >process.env.AUTH_REQUIRED !== 'false'</span>
-    : !isTest,
-&nbsp;
-  // --- Rate limiting (token bucket algorithm) ------------------------------
-  // The zip generation endpoint is the most sensitive to abuse (a malicious
-  // actor spamming the "generate zip" button), so we throttle it per client IP
-  // with a token bucket. The three numbers below are the algorithm constants
-  // from the TP:
-  //   r    -&gt; tokens refilled per second
-  //   b    -&gt; bucket size (also the starting/burst allowance)
-  //   cost -&gt; tokens consumed by a single request
-  rateLimitRefillPerSecond: Number(process.env.RATE_LIMIT_REFILL_PER_SECOND) || 1, // r
-  rateLimitBucketSize: Number(process.env.RATE_LIMIT_BUCKET_SIZE) || 15, // b
-  rateLimitRequestCost: Number(process.env.RATE_LIMIT_REQUEST_COST) || 3, // cost
-&nbsp;
-  // Turn rate limiting on/off. Off in the test environment (so the suite never
-  // needs a Redis server and isn't throttled); on everywhere else. Force with
-  // RATE_LIMIT_ENABLED=true/false.
-  rateLimitEnabled: process.env.RATE_LIMIT_ENABLED
-    ? <span class="branch-0 cbranch-no" title="branch not covered" >process.env.RATE_LIMIT_ENABLED !== 'false'</span>
-    : !isTest,
-&nbsp;
-  // Back the limiter with Redis so several instances share one bucket per IP
-  // (Part III). Enabled automatically when REDIS_URL / REDIS_HOST are set and
-  // we're not in tests; otherwise the limiter falls back to an in-memory map
-  // (Part II). Force with RATE_LIMIT_REDIS_ENABLED=true/false.
-  rateLimitRedisEnabled: process.env.RATE_LIMIT_REDIS_ENABLED
-    ? <span class="branch-0 cbranch-no" title="branch not covered" >process.env.RATE_LIMIT_REDIS_ENABLED !== 'false'</span>
-    : redisConfigured &amp;&amp; !isTest,
-&nbsp;
-  // Redis connection details (Part III). Prefer a full REDIS_URL; otherwise
-  // assemble the connection from the individual pieces the TP provides.
-  redisUrl,
-  redisUsername: process.env.REDIS_USERNAME || <span class="branch-1 cbranch-no" title="branch not covered" >'default',</span>
-  redisPassword: process.env.REDIS_PASSWORD || <span class="branch-1 cbranch-no" title="branch not covered" >'',</span>
-  redisHost,
-  redisPort: Number(process.env.REDIS_PORT) || <span class="branch-1 cbranch-no" title="branch not covered" >6379</span>
+  consume,
+  _resetInMemory
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -408,14 +387,14 @@ module.exports = {
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2026-09-02T12:40:17.828Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     

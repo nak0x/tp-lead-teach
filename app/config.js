@@ -15,6 +15,16 @@ const resourceName = `ecni2-${pubsubIndex}`;
 
 const isTest = process.env.NODE_ENV === 'test';
 
+// --- Rate limiting (token bucket) -----------------------------------------
+// Redis connection used to share the rate-limiter state across horizontally
+// scaled instances (Part III of the TP). The password MUST come from an
+// environment variable and never be committed (see .env / .env.example).
+const redisUrl = process.env.REDIS_URL || '';
+const redisHost = process.env.REDIS_HOST || '';
+// Only turn the Redis-backed limiter on when we actually have connection
+// details; otherwise the limiter degrades to a per-process in-memory map.
+const redisConfigured = Boolean(redisUrl || redisHost);
+
 // Firebase Realtime Database is used to persist the completed zips so they
 // survive a restart of the instance. The Admin SDK authenticates with the exact
 // same service account key as Pub/Sub / Storage (GOOGLE_APPLICATION_CREDENTIALS),
@@ -63,5 +73,40 @@ module.exports = {
   // AUTH_REQUIRED=true/false.
   authRequired: process.env.AUTH_REQUIRED
     ? process.env.AUTH_REQUIRED !== 'false'
-    : !isTest
+    : !isTest,
+
+  // --- Rate limiting (token bucket algorithm) ------------------------------
+  // The zip generation endpoint is the most sensitive to abuse (a malicious
+  // actor spamming the "generate zip" button), so we throttle it per client IP
+  // with a token bucket. The three numbers below are the algorithm constants
+  // from the TP:
+  //   r    -> tokens refilled per second
+  //   b    -> bucket size (also the starting/burst allowance)
+  //   cost -> tokens consumed by a single request
+  rateLimitRefillPerSecond: Number(process.env.RATE_LIMIT_REFILL_PER_SECOND) || 1, // r
+  rateLimitBucketSize: Number(process.env.RATE_LIMIT_BUCKET_SIZE) || 15, // b
+  rateLimitRequestCost: Number(process.env.RATE_LIMIT_REQUEST_COST) || 3, // cost
+
+  // Turn rate limiting on/off. Off in the test environment (so the suite never
+  // needs a Redis server and isn't throttled); on everywhere else. Force with
+  // RATE_LIMIT_ENABLED=true/false.
+  rateLimitEnabled: process.env.RATE_LIMIT_ENABLED
+    ? process.env.RATE_LIMIT_ENABLED !== 'false'
+    : !isTest,
+
+  // Back the limiter with Redis so several instances share one bucket per IP
+  // (Part III). Enabled automatically when REDIS_URL / REDIS_HOST are set and
+  // we're not in tests; otherwise the limiter falls back to an in-memory map
+  // (Part II). Force with RATE_LIMIT_REDIS_ENABLED=true/false.
+  rateLimitRedisEnabled: process.env.RATE_LIMIT_REDIS_ENABLED
+    ? process.env.RATE_LIMIT_REDIS_ENABLED !== 'false'
+    : redisConfigured && !isTest,
+
+  // Redis connection details (Part III). Prefer a full REDIS_URL; otherwise
+  // assemble the connection from the individual pieces the TP provides.
+  redisUrl,
+  redisUsername: process.env.REDIS_USERNAME || 'default',
+  redisPassword: process.env.REDIS_PASSWORD || '',
+  redisHost,
+  redisPort: Number(process.env.REDIS_PORT) || 6379
 };
