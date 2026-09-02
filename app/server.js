@@ -43,4 +43,10 @@ if (config.workerEnabled) {
   require('./queue/consumer').startWorker();
 }
 
+// Memory Store TP - warm up the shared rate-limiter Redis connection at boot so
+// the first throttled request doesn't pay the connection latency, and so an
+// unreachable Redis fails over to the in-memory limiter early. Non-blocking and
+// a no-op when Redis-backed limiting is disabled (e.g. the test environment).
+require('./rate_limit/redis').connect().catch(() => {});
+
 module.exports = app;

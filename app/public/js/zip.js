@@ -158,6 +158,18 @@
 
     fetch(url, { method: 'POST', headers: { Accept: 'application/json' } })
       .then(function (res) {
+        // Rate limited by the token bucket: surface the server's friendly
+        // message (and how long to wait) instead of a generic HTTP error.
+        if (res.status === 429) {
+          return res.json().then(function (data) {
+            var message =
+              (data && data.error) || 'Too many requests. Please slow down.';
+            if (data && data.retryAfter) {
+              message += ' Try again in ' + data.retryAfter + 's.';
+            }
+            throw new Error(message);
+          });
+        }
         if (!res.ok && res.status !== 202) {
           throw new Error('Failed to queue zip job (HTTP ' + res.status + ')');
         }

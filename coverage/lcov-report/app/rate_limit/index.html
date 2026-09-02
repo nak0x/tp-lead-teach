@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for app/queue</title>
+    <title>Code coverage report for app/rate_limit</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> app/queue</h1>
+        <h1><a href="../../index.html">All files</a> app/rate_limit</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">44.24% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/36</span>
+                <span class='fraction'>50/113</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.22% </span>
+                <span class="strong">38.46% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/18</span>
+                <span class='fraction'>20/52</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">27.27% </span>
+                <span class="strong">37.5% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/11</span>
+                <span class='fraction'>9/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">45.45% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/36</span>
+                <span class='fraction'>50/110</span>
             </div>
         
             
@@ -79,33 +79,48 @@
 </tr>
 </thead>
 <tbody><tr>
-	<td class="file low" data-value="job_store.js"><a href="job_store.js.html">job_store.js</a></td>
-	<td data-value="27.58" class="pic low">
-	<div class="chart"><div class="cover-fill" style="width: 27%"></div><div class="cover-empty" style="width: 73%"></div></div>
+	<td class="file high" data-value="middleware.js"><a href="middleware.js.html">middleware.js</a></td>
+	<td data-value="81.81" class="pic high">
+	<div class="chart"><div class="cover-fill" style="width: 81%"></div><div class="cover-empty" style="width: 19%"></div></div>
 	</td>
-	<td data-value="27.58" class="pct low">27.58%</td>
-	<td data-value="29" class="abs low">8/29</td>
-	<td data-value="25" class="pct low">25%</td>
-	<td data-value="16" class="abs low">4/16</td>
-	<td data-value="30" class="pct low">30%</td>
-	<td data-value="10" class="abs low">3/10</td>
-	<td data-value="27.58" class="pct low">27.58%</td>
-	<td data-value="29" class="abs low">8/29</td>
+	<td data-value="81.81" class="pct high">81.81%</td>
+	<td data-value="22" class="abs high">18/22</td>
+	<td data-value="91.66" class="pct high">91.66%</td>
+	<td data-value="12" class="abs high">11/12</td>
+	<td data-value="100" class="pct high">100%</td>
+	<td data-value="2" class="abs high">2/2</td>
+	<td data-value="81.81" class="pct high">81.81%</td>
+	<td data-value="22" class="abs high">18/22</td>
 	</tr>
 
 <tr>
-	<td class="file medium" data-value="producer.js"><a href="producer.js.html">producer.js</a></td>
-	<td data-value="57.14" class="pic medium">
-	<div class="chart"><div class="cover-fill" style="width: 57%"></div><div class="cover-empty" style="width: 43%"></div></div>
+	<td class="file medium" data-value="rate_limiter.js"><a href="rate_limiter.js.html">rate_limiter.js</a></td>
+	<td data-value="65.71" class="pic medium">
+	<div class="chart"><div class="cover-fill" style="width: 65%"></div><div class="cover-empty" style="width: 35%"></div></div>
 	</td>
-	<td data-value="57.14" class="pct medium">57.14%</td>
-	<td data-value="7" class="abs medium">4/7</td>
-	<td data-value="0" class="pct low">0%</td>
-	<td data-value="2" class="abs low">0/2</td>
-	<td data-value="0" class="pct low">0%</td>
-	<td data-value="1" class="abs low">0/1</td>
-	<td data-value="57.14" class="pct medium">57.14%</td>
-	<td data-value="7" class="abs medium">4/7</td>
+	<td data-value="65.71" class="pct medium">65.71%</td>
+	<td data-value="35" class="abs medium">23/35</td>
+	<td data-value="46.66" class="pct low">46.66%</td>
+	<td data-value="15" class="abs low">7/15</td>
+	<td data-value="83.33" class="pct high">83.33%</td>
+	<td data-value="6" class="abs high">5/6</td>
+	<td data-value="65.71" class="pct medium">65.71%</td>
+	<td data-value="35" class="abs medium">23/35</td>
+	</tr>
+
+<tr>
+	<td class="file low" data-value="redis.js"><a href="redis.js.html">redis.js</a></td>
+	<td data-value="16.07" class="pic low">
+	<div class="chart"><div class="cover-fill" style="width: 16%"></div><div class="cover-empty" style="width: 84%"></div></div>
+	</td>
+	<td data-value="16.07" class="pct low">16.07%</td>
+	<td data-value="56" class="abs low">9/56</td>
+	<td data-value="8" class="pct low">8%</td>
+	<td data-value="25" class="abs low">2/25</td>
+	<td data-value="12.5" class="pct low">12.5%</td>
+	<td data-value="16" class="abs low">2/16</td>
+	<td data-value="16.98" class="pct low">16.98%</td>
+	<td data-value="53" class="abs low">9/53</td>
 	</tr>
 
 </tbody>

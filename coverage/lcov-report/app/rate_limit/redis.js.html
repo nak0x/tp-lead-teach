@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for app/route.js</title>
+    <title>Code coverage report for app/rate_limit/redis.js</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">app</a> route.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">app/rate_limit</a> redis.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60.81% </span>
+                <span class="strong">16.07% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>45/74</span>
+                <span class='fraction'>9/56</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">8% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>18/30</span>
+                <span class='fraction'>2/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/10</span>
+                <span class='fraction'>2/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60.81% </span>
+                <span class="strong">16.98% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>45/74</span>
+                <span class='fraction'>9/53</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -224,44 +224,7 @@
 <a name='L159'></a><a href='#L159'>159</a>
 <a name='L160'></a><a href='#L160'>160</a>
 <a name='L161'></a><a href='#L161'>161</a>
-<a name='L162'></a><a href='#L162'>162</a>
-<a name='L163'></a><a href='#L163'>163</a>
-<a name='L164'></a><a href='#L164'>164</a>
-<a name='L165'></a><a href='#L165'>165</a>
-<a name='L166'></a><a href='#L166'>166</a>
-<a name='L167'></a><a href='#L167'>167</a>
-<a name='L168'></a><a href='#L168'>168</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<a name='L162'></a><a href='#L162'>162</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -273,17 +236,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -291,32 +252,75 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -326,244 +330,222 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const formValidator = require('./form_validator');
-const photoModel = require('./photo_model');
-const producer = require('./queue/producer');
-const jobStore = require('./queue/job_store');
-const storage = require('./storage/storage');
-const zipRepository = require('./firebase/zip_repository');
-const { requireAuth } = require('./firebase/auth');
-const { rateLimit } = require('./rate_limit/middleware');
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Part III - Redis connection for the rate limiter.
+//
+// The `tokenbucket` library persists each bucket's state (lastFill +
+// tokensLeft) in Redis so that several horizontally scaled instances share a
+// single limit per IP. The catch: `tokenbucket` was written for the old
+// callback-based node_redis client and calls `redisClient.mset(...cb)` /
+// `redisClient.mget(...cb)`, whereas the modern `redis` v6 client is
+// promise-based and only exposes `mSet` / `mGet`. This module:
+//   1. connects a modern client the way the TP documents (createClient with
+//      username / password / socket), and
+//   2. wraps it in a tiny callback adapter exposing `mset` / `mget` so the
+//      library can talk to it unchanged.
+//
+// Everything is lazy and guarded by config so the test suite (and any
+// environment without Redis) never opens a socket. If the connection fails we
+// log once and return null; the rate limiter then degrades to its in-memory
+// map instead of crashing requests.
+const config = require('../config');
 &nbsp;
-// Resolve the GCS object name for a set of tags. Prefer the fast in-memory job
-// store (current session), then fall back to Firebase so downloads still work
-// after a restart. Never throws: a database error just means "not found".
-async function resolveObjectName(tags) {
-  const local = jobStore.getObjectName(tags);
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (local) {
-<span class="cstat-no" title="statement not covered" >    return local;</span>
-  }
-  try {
-    const record = await zipRepository.findLatestByTags(tags);
-    return record ? <span class="branch-0 cbranch-no" title="branch not covered" >record.path </span>: undefined;
-  } catch (error) {
-<span class="cstat-no" title="statement not covered" >    console.error('failed to look up stored zip', error);</span>
-<span class="cstat-no" title="statement not covered" >    return undefined;</span>
-  }
+let client = null;
+let adapter = null;
+// A single connection attempt shared by every caller.
+let connectPromise = null;
+// Set once a connection attempt has failed, so we stop trying and stay on the
+// in-memory limiter (no reconnect storm) until the process restarts.
+let unavailable = false;
+&nbsp;
+// Build the modern redis v6 client from configuration. Mirrors the TP snippet:
+//   const client = createClient({ username, password, socket: { host, port } });
+// with two hardening tweaks so an unreachable Redis fails fast and falls back
+// to the in-memory limiter instead of hanging requests or reconnecting forever:
+//   - connectTimeout: give up on a dead host after 5s.
+//   - reconnectStrategy: stop after a few attempts (returning an Error rejects
+//     the pending connect() and ends the retry loop).
+function <span class="fstat-no" title="function not covered" >socketOptions(</span>extra) {
+<span class="cstat-no" title="statement not covered" >  return Object.assign(</span>
+    {
+      connectTimeout: 5000,
+      reconnectStrategy: <span class="fstat-no" title="function not covered" >re</span>tries =&gt;
+<span class="cstat-no" title="statement not covered" >        retries &gt; 2 ? new Error('redis unreachable') : Math.min(retries * 200, 800)</span>
+    },
+    extra
+  );
 }
 &nbsp;
-function route(app) {
-  app.get('/', async (req, res) =&gt; {
-    const tags = req.query.tags;
-    const tagmode = req.query.tagmode;
-&nbsp;
-    const ejsLocalVariables = {
-      tagsParameter: tags || '',
-      tagmodeParameter: tagmode || '',
-      photos: [],
-      searchResults: false,
-      invalidParameters: false,
-      // Part V - whether a zip for these tags is already available (so the page
-      // can show the download button straight away after a reload).
-      zipReady: false
-    };
-&nbsp;
-    // if no input params are passed in then render the view with out querying the api
-    if (!tags &amp;&amp; !tagmode) {
-      return res.render('index', ejsLocalVariables);
-    }
-&nbsp;
-    // validate query parameters
-    if (!formValidator.hasValidFlickrAPIParams(tags, tagmode)) {
-      ejsLocalVariables.invalidParameters = true;
-      return res.render('index', ejsLocalVariables);
-    }
-&nbsp;
-    // Part V - if the zip for these tags is already available (in memory or
-    // persisted in Firebase), let the view show the download button right away.
-    ejsLocalVariables.zipReady = Boolean(await resolveObjectName(tags));
-&nbsp;
-    // get photos from flickr public feed api
-    return photoModel
-      .getFlickrPhotos(tags, tagmode)
-      .then(photos =&gt; {
-        ejsLocalVariables.photos = photos;
-        ejsLocalVariables.searchResults = true;
-        return res.render('index', ejsLocalVariables);
-      })
-      .catch(error =&gt; {
-        console.log('aspdfonaposd', error);
-        return res.status(500).send({ error });
-      });
+function <span class="fstat-no" title="function not covered" >createClient(</span>) {
+  const { createClient } = <span class="cstat-no" title="statement not covered" >require('redis');</span>
+<span class="cstat-no" title="statement not covered" >  if (config.redisUrl) {</span>
+<span class="cstat-no" title="statement not covered" >    return createClient({ url: config.redisUrl, socket: socketOptions() });</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return createClient({</span>
+    username: config.redisUsername,
+    password: config.redisPassword,
+    socket: socketOptions({ host: config.redisHost, port: config.redisPort })
   });
+}
 &nbsp;
-  // Part I &amp; II - endpoint producer: queue a "zip these tags" job.
-  // Called over AJAX from the search results page; returns JSON so the page can
-  // start polling /zip/status instead of navigating away to the raw response.
-  // Protected by two layers, applied before any work is done:
-  //   - rateLimit: token-bucket throttling per client IP (Memory Store TP) so a
-  //     malicious actor can't spam the zip-generation button. Runs first so it
-  //     shields even the (relatively costly) auth verification from abuse.
-  //   - requireAuth: a valid Firebase ID token (Google Sign-In).
-  app.post('/zip', rateLimit, requireAuth, <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-    const tags = <span class="cstat-no" title="statement not covered" >req.query.tags;</span>
-    const tagmode = <span class="cstat-no" title="statement not covered" >req.query.tagmode || 'all';</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    if (!tags) {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(400).send({ error: 'Missing "tags" query parameter' });</span>
-    }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    try {</span>
-      const messageId = <span class="cstat-no" title="statement not covered" >await producer.publishZipJob(tags, tagmode);</span>
-      // Record the freshly queued job so /zip/status reports "queued" until the
-      // worker picks it up.
-<span class="cstat-no" title="statement not covered" >      jobStore.markQueued(tags);</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(202).send({ status: 'queued', messageId, tags });</span>
-    } catch (error) {
-<span class="cstat-no" title="statement not covered" >      console.error('failed to publish zip job', error);</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(500).send({ error: 'Failed to queue zip job' });</span>
-    }
-  });
-&nbsp;
-  // Live status endpoint polled by the progress bar on the page.
-  app.get('/zip/status', (req, res) =&gt; {
-    const tags = req.query.tags;
-&nbsp;
-    if (!tags) {
-      return res.status(400).send({ error: 'Missing "tags" query parameter' });
-    }
-&nbsp;
-    const status = jobStore.getStatus(tags);
-    return res.status(200).send({
-      status: status.status,
-      progress: status.progress,
-      // Once ready, tell the client where to stream the file from.
-      downloadUrl: status.status === 'done'
-        ? <span class="branch-0 cbranch-no" title="branch not covered" >`/zip/download?tags=${encodeURIComponent(tags)}`</span>
-        : null,
-      error: status.error
-    });
-  });
-&nbsp;
-  // Part II - list every zip already generated, read straight from Firebase.
-  // The client fetches this to show the "previously generated zips" section.
-  app.get('/zips', <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >    try {</span>
-      const zips = <span class="cstat-no" title="statement not covered" >await zipRepository.listZips();</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(200).send({ zips });</span>
-    } catch (error) {
-<span class="cstat-no" title="statement not covered" >      console.error('failed to list zips', error);</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(500).send({ error: 'Failed to list zips' });</span>
-    }
-  });
-&nbsp;
-  // Part V - stream the finished zip straight from Google Cloud Storage to the
-  // client (Content-Disposition: attachment triggers the browser download).
-  app.get('/zip/download', async (req, res) =&gt; {
-    const tags = req.query.tags;
-&nbsp;
-    if (!tags) {
-      return res.status(400).send({ error: 'Missing "tags" query parameter' });
-    }
-&nbsp;
-    // Resolve from memory first, then Firebase (so downloads survive a restart).
-    const objectName = await resolveObjectName(tags);
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (!objectName) {
-      return res.status(404).send({ error: 'No zip available for these tags yet' });
-    }
-&nbsp;
-    const safeName = <span class="cstat-no" title="statement not covered" >String(tags).trim().replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '');</span>
-    const filename = <span class="cstat-no" title="statement not covered" >`${safeName || 'photos'}.zip`;</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    res.setHeader('Content-Type', 'application/zip');</span>
-<span class="cstat-no" title="statement not covered" >    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);</span>
-&nbsp;
-    const readStream = <span class="cstat-no" title="statement not covered" >storage.createReadStream(objectName);</span>
-<span class="cstat-no" title="statement not covered" >    readStream.on('error', <span class="fstat-no" title="function not covered" >er</span>ror =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      console.error('failed to stream zip', error);</span>
-<span class="cstat-no" title="statement not covered" >      if (!res.headersSent) {</span>
-<span class="cstat-no" title="statement not covered" >        res.status(500).send({ error: 'Failed to download zip' });</span>
-      } else {
-<span class="cstat-no" title="statement not covered" >        res.destroy(error);</span>
+// Adapt the promise-based v6 client to the callback API that `tokenbucket`
+// expects. Only the two commands the library uses are bridged.
+function <span class="fstat-no" title="function not covered" >buildAdapter(</span>c) {
+<span class="cstat-no" title="statement not covered" >  return {</span>
+    // tokenbucket calls: mset('k1', v1, 'k2', v2, cb)
+<span class="fstat-no" title="function not covered" >    ms</span>et(...args) {
+      const cb = <span class="cstat-no" title="statement not covered" >args.pop();</span>
+      const pairs = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >      for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; args.length; i += 2) {</span>
+<span class="cstat-no" title="statement not covered" >        pairs.push([String(args[i]), String(args[i + 1])]);</span>
       }
-    });
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    return readStream.pipe(res);</span>
-  });
+<span class="cstat-no" title="statement not covered" >      c.mSet(pairs).then(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >cb(null, 'OK'))</span>.catch(cb);</span>
+    },
+    // tokenbucket calls: mget('k1', 'k2', cb) -&gt; cb(null, [v1, v2])
+<span class="fstat-no" title="function not covered" >    mg</span>et(...args) {
+      const cb = <span class="cstat-no" title="statement not covered" >args.pop();</span>
+<span class="cstat-no" title="statement not covered" >      c.mGet(args.map(String)).then(<span class="fstat-no" title="function not covered" >re</span>ply =&gt; <span class="cstat-no" title="statement not covered" >cb(null, reply))</span>.catch(cb);</span>
+    }
+  };
 }
 &nbsp;
-module.exports = route;
+// Whether the Redis-backed limiter is turned on (needs both the feature flag
+// and connection details).
+function isEnabled() {
+  return config.rateLimitRedisEnabled;
+}
+&nbsp;
+// Start (or reuse) the connection. Resolves to the callback adapter once ready,
+// or null when Redis is disabled/unreachable. Meant to be called once at boot
+// as a warm-up; per-request code uses the synchronous getAdapter() instead so a
+// slow or dead connection never blocks a request.
+function connect() {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (!isEnabled() || <span class="branch-1 cbranch-no" title="branch not covered" >unavailable)</span> {
+    return Promise.resolve(adapter);
+  }
+<span class="cstat-no" title="statement not covered" >  if (connectPromise) {</span>
+<span class="cstat-no" title="statement not covered" >    return connectPromise;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  connectPromise = (<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    try {</span>
+<span class="cstat-no" title="statement not covered" >      client = createClient();</span>
+      // Without a listener a connection error would bubble up as an unhandled
+      // exception and take the process down.
+<span class="cstat-no" title="statement not covered" >      client.on('error', <span class="fstat-no" title="function not covered" >er</span>r =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        console.error('[ratelimit] redis client error:', err &amp;&amp; err.message);</span>
+      });
+<span class="cstat-no" title="statement not covered" >      await client.connect();</span>
+<span class="cstat-no" title="statement not covered" >      adapter = buildAdapter(client);</span>
+<span class="cstat-no" title="statement not covered" >      console.log('[ratelimit] connected to Redis for shared rate limiting');</span>
+<span class="cstat-no" title="statement not covered" >      return adapter;</span>
+    } catch (err) {
+<span class="cstat-no" title="statement not covered" >      console.error(</span>
+        '[ratelimit] could not connect to Redis, using in-memory limiter:',
+        err &amp;&amp; err.message
+      );
+<span class="cstat-no" title="statement not covered" >      unavailable = true;</span>
+<span class="cstat-no" title="statement not covered" >      if (client) {</span>
+        // Best-effort cleanup of the half-open client so it stops reconnecting.
+<span class="cstat-no" title="statement not covered" >        client.quit().catch(<span class="fstat-no" title="function not covered" >()</span> =&gt; {});</span>
+<span class="cstat-no" title="statement not covered" >        client = null;</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+    }
+  })();
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return connectPromise;</span>
+}
+&nbsp;
+// Synchronous accessor used on the request path: the ready adapter, or null
+// when Redis isn't connected yet (or is unavailable). The first call also kicks
+// off the connection in the background, so the limiter still reaches Redis even
+// if the boot-time warm-up was skipped. Never blocks the request.
+function <span class="fstat-no" title="function not covered" >getAdapter(</span>) {
+<span class="cstat-no" title="statement not covered" >  if (adapter) {</span>
+<span class="cstat-no" title="statement not covered" >    return adapter;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (isEnabled() &amp;&amp; !unavailable &amp;&amp; !connectPromise) {</span>
+<span class="cstat-no" title="statement not covered" >    connect().catch(<span class="fstat-no" title="function not covered" >()</span> =&gt; {});</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return null;</span>
+}
+&nbsp;
+// Close the connection (used for graceful shutdown / tests).
+async function <span class="fstat-no" title="function not covered" >disconnect(</span>) {
+<span class="cstat-no" title="statement not covered" >  if (client) {</span>
+<span class="cstat-no" title="statement not covered" >    try {</span>
+<span class="cstat-no" title="statement not covered" >      await client.quit();</span>
+    } catch (err) {
+      // ignore - we're tearing down anyway
+    }
+  }
+<span class="cstat-no" title="statement not covered" >  client = null;</span>
+<span class="cstat-no" title="statement not covered" >  adapter = null;</span>
+<span class="cstat-no" title="statement not covered" >  connectPromise = null;</span>
+<span class="cstat-no" title="statement not covered" >  unavailable = false;</span>
+}
+&nbsp;
+module.exports = {
+  isEnabled,
+  connect,
+  getAdapter,
+  disconnect
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -573,14 +555,14 @@ module.exports = route;
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2026-09-02T12:40:17.828Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     
